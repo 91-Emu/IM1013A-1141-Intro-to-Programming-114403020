@@ -2,7 +2,6 @@
 
 int main(void){
 
-    puts("Wonderhoy!")
+    puts("Wonderhoy!");
 
 }//end main
-1
