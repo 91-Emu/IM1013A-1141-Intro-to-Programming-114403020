@@ -54,7 +54,7 @@ int main(void){
     //no 4-digit limit
 
     scanf("%u", &iGenerate);
-    puts("");
+    puts("");//\n
     
     /*
     while(iGenerate < 1000 || iGenerate > 9999){//check 4-digit? (1000~9999)
@@ -162,15 +162,20 @@ int main(void){
         }
         printf("feedback: %dA%dB\n\n", iA, iB);
         iRound++;
+        
     }//end while iRound
+
     if(iA == 4){
         puts("GAME ENDS.");
         puts("YOU WIN THE GAME!!");
-    }
+
+    }//end if win
+
     else{
         printf("The correct password is %d.\n\n", iPassword);
         puts("GAME OVER.");
         puts("YOU LOSE THE GAME.");
-    }
+
+    }//end else lose
 
 }//end main
