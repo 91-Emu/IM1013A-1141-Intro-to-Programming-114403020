@@ -45,7 +45,7 @@ The flowchart for generating a valid password is given below:
 #include<stdio.h>
 int main(void){
 
-    unsigned int iGenerate = 0;//no negative input
+    unsigned int iGenerate = 0;//no negative iGenerate
 
     //puts("Enter a 4-digit number to generate a password:");
     //4-digit limit
@@ -85,7 +85,7 @@ int main(void){
         
     }//end while iPassword has same digits
 
-    puts("A secret password has been generated.\n\n");
+    puts("A secret password has been generated.\n(0XXX is included)\n(123 will be considered as 0123)\n");
 
     int iRound = 1;
     int iGuess = 0;
@@ -93,6 +93,7 @@ int main(void){
     int iA=0, iB=0;
 
     while(iRound <= 10 && iA != 4){
+
         iA = 0;
         iB = 0;
         printf("--- ROUND %d ---\n", iRound);
@@ -114,7 +115,8 @@ int main(void){
             iGuessDigit2 == iGuessDigit4 ||
             iGuessDigit3 == iGuessDigit4){
 
-            puts("Invalid input! Please enter between 0123 to 9876 without same digit.");
+            puts("Invalid input! Please enter a number between 0123 to 9876 without same digit.\n");
+            printf("%s","Enter a 4-digit number: ");
             scanf("%d", &iGuess);
 
             iGuessDigit1 = iGuess / 1000;
@@ -162,17 +164,26 @@ int main(void){
         }
         printf("feedback: %dA%dB\n\n", iA, iB);
         iRound++;
-        
+
     }//end while iRound
 
     if(iA == 4){
+
         puts("GAME ENDS.");
         puts("YOU WIN THE GAME!!");
 
     }//end if win
 
     else{
+
+        if(iPassword < 1000){
+            printf("The correct password is 0%d.\n\n", iPassword);
+        }//<1000 add 0
+
+        else{
         printf("The correct password is %d.\n\n", iPassword);
+        }//>=1000
+
         puts("GAME OVER.");
         puts("YOU LOSE THE GAME.");
 
