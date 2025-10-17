@@ -71,7 +71,7 @@ int main(void){
 
     while(  
         iDigit1 == iDigit2 || //check same digit
-        iDigit1 == iDigit3 || 
+        iDigit1 == iDigit3 || //00XX is excluded in this case
         iDigit1 == iDigit4 || 
         iDigit2 == iDigit3 || 
         iDigit2 == iDigit4 || 
