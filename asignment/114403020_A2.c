@@ -40,8 +40,8 @@
 
     Enter a positive integer between 1 and 100000: 1000
     --- REVERSAL RESULT ---
-    Original number N: 1000
-    Reversed number R: 0001
+    Original Number N: 1000
+    Reversed Number R: 0001
 
     ==== MENU ====
     1) Option 1 - times table
@@ -54,8 +54,8 @@
 
     Enter a positive integer between 1 and 100000: 509
     --- REVERSAL RESULT ---
-    Original number N: 509
-    Reversed number R: 905
+    Original Number N: 509
+    Reversed Number R: 905
 
     ==== MENU ====
     1) Option 1 - times table
@@ -69,30 +69,50 @@
 
 void times_table();
 int multiplication(int,int);
-void reverse_the_number();
-int reverse_number(int);
+void reverse_the_number();//for text
+int reverse_number(int);//for calculation
 
 void times_table(){
+
+    /*
+    1*1= 1 1*2= 2 ... 1*9= 9
+    2*1= 2 2*2= 4 ... 2*9=18
+    ...
+    9*1= 9 9*2=18 ... 9*9=81
+    */
+
     puts("");
+
     int iMul = 0;
     int i,j = 0;
+
     for(i=1; i<=9; i++){
+
         for(j=1; j<=9; j++){
+
             iMul = multiplication(i, j);
             printf("%d*%d=%2d ", i, j, iMul);
-        }
+
+        }//end for j
+
         puts("");
-    }
+
+    }//end for i
+
     puts("");
-}
+
+}//end times_table
 
 int multiplication(int _iA, int _iB){
+
     int iMul = 0;
     iMul = _iA * _iB;
     return iMul;
-}
 
-void reverse_the_number(){
+}//end multiplication
+
+void reverse_the_number(){//12300 -> 00321
+
     int iN = 0;
     int iR = 0;
 
@@ -100,56 +120,77 @@ void reverse_the_number(){
     scanf("%d", &iN);
 
     while(iN < 1 || iN > 100000){
+
         puts("Invalid input!\n");
         printf("%s","Enter a positive integer between 1 and 100000: ");
         scanf("%d", &iN);
-    }
 
-    iR = reverse_number(iN);
+    }//end while
 
-    if(iN < 10){
+    iR = reverse_number(iN);//call function to reverse the number
+
+    //use %0 to print leading zeros
+
+    if(iN < 10){//1~9
         printf("--- REVERSAL RESULT ---\n");
         printf("Original Number N: %d\n", iN);
         printf("Reversed Number R: %d\n", iR);
     }
-    else if(iN < 100){
+    else if(iN < 100){//10~99
         printf("--- REVERSAL RESULT ---\n");
         printf("Original Number N: %02d\n", iN);
         printf("Reversed Number R: %02d\n", iR);
     }
-    else if(iN < 1000){
+    else if(iN < 1000){//100~999
         printf("--- REVERSAL RESULT ---\n");
         printf("Original Number N: %03d\n", iN);
         printf("Reversed Number R: %03d\n", iR);
 
     }
-    else if(iN < 10000){
+    else if(iN < 10000){//1000~9999
         printf("--- REVERSAL RESULT ---\n");
         printf("Original Number N: %04d\n", iN);
         printf("Reversed Number R: %04d\n", iR);
     }
-    else if(iN < 100000){
+    else if(iN < 100000){//10000~99999
         printf("--- REVERSAL RESULT ---\n");
         printf("Original Number N: %05d\n", iN);
         printf("Reversed Number R: %05d\n", iR);
     }
-    else{
+    else{//100000
         printf("--- REVERSAL RESULT ---\n");
         printf("Original Number N: %06d\n", iN);
         printf("Reversed Number R: %06d\n", iR);
     }
     puts("");
-}
+    
+}//end reverse_the_number
 
-int reverse_number(int _iN){
+int reverse_number(int _iN){//12300 -> 321
+
     int reversed = 0;
+
     while(_iN != 0){
+
+        /*
+        123456  0
+        12345   6
+        1234    65
+        123     654
+        12      6543
+        1       65432
+        0       654321
+        */
+
         int digit = _iN % 10;
         reversed = reversed * 10 + digit;
         _iN /= 10;
+
     }//end while
+
     return reversed;
-}
+
+}//end reverse_number
 
 int main(){
 
