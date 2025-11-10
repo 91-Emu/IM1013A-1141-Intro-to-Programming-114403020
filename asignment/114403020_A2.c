@@ -1,192 +1,193 @@
-/*
-This is your A2 question:
-Project Brief: Bulls and Cows Game
-Your assigned project is to create a "Bulls and Cows" game. 
-You are required to develop a simple program 
-that generates a password based on a player's input, 
-performs a fixed mathematical operation, 
-and outputs the result as a 4-digit password. 
-In addition, the player will receive feedback from the program, 
-and the format of the feedback is shown below. (50%)
-
-Game Rules Description
-1. Accepts Input
-The program asks the user to enter a 4-digit number Input 
-(range: 1000∼9999).
-
-If the input is not exactly 4 digits, 
-the program repeatedly prompts the user to enter a valid number 
-until a correct input is provided.
-
-Checking for non-numeric input is optional. 
-You will not be penalized for not implementing this feature.
-
-2. Performs Password Calculation
-Once a valid number is entered, 
-the program calculates the password using the formula:
-
-Password=((Input×3)+1357)(mod10000)
-Example Calculations:
-
-Input=123→Password=(123×3+1357)(mod10000)=1736→4-digit 
-output 1736
-
-Input=99999→Password=(99999×3+1357)(mod10000)=13954(mod10000)
-=3954→4-digit output 3954
-
-However, the password cannot contain duplicate digits. 
-For example, Input=1234→Password=(1234×3+1357)(mod10000)=5059, 
-which contains two 5's. In this case, 
-the program will use 5059 as the new input to generate a new password 
-until the password does not contain duplicate digits. 
-The flowchart for generating a valid password is given below:
-*/
-
 #include<stdio.h>
-int main(void){
 
-    unsigned int iGenerate = 0;//no negative iGenerate
-
-    //puts("Enter a 4-digit number to generate a password:");
-    //4-digit limit
-
-    puts("Enter a number to generate a password:");
-    //no 4-digit limit
-
-    scanf("%u", &iGenerate);
-    puts("");//\n
-    
     /*
-    while(iGenerate < 1000 || iGenerate > 9999){//check 4-digit? (1000~9999)
-        puts("Invalid input! Please enter a number between 1000 to 9999.");
-        scanf("%d", &iGenerate);
-    }//end while iGenerate not 4-digit? (1000~9999)
+
+    ==== MENU ====
+    1) Option 1 - times table
+    2) Option 2 - reverse the number
+    (-1) End program
+
+    Please select an option: 5
+    Invalid option. Try again.
+
+    Please select an option: 1
+
+    1*1= 1 1*2= 2 ... 1*9= 9
+    2*1= 2 2*2= 4 ... 2*9=18
+    ...
+    9*1= 9 9*2=18 ... 9*9=81
+
+    ==== MENU ====
+    1) Option 1 - times table
+    2) Option 2 - reverse the number
+    (-1) End program
+
+    Please select an option: -1
+    Prodram terminated.
+
     */
 
-    int iPassword = (iGenerate % 10000 * 3 + 1357) % 10000;
-    int iDigit1 = iPassword / 1000;
-    int iDigit2 = (iPassword / 100) % 10;
-    int iDigit3 = (iPassword / 10) % 10;
-    int iDigit4 = iPassword % 10;
+    /*
+    
+    ==== MENU ====
+    1) Option 1 - times table
+    2) Option 2 - reverse the number
+    (-1) End program
 
-    while(  
-        iDigit1 == iDigit2 || //check same digit
-        iDigit1 == iDigit3 || //00XX is excluded in this case
-        iDigit1 == iDigit4 || 
-        iDigit2 == iDigit3 || 
-        iDigit2 == iDigit4 || 
-        iDigit3 == iDigit4){
+    Please select an option: 2
+    Enter a positive integer between 1 and 100000: 123456
+    Invalid input! 
 
-        iPassword = (iPassword * 3 + 1357) % 10000;
-        iDigit1 = iPassword / 1000;
-        iDigit2 = (iPassword / 100) % 10;
-        iDigit3 = (iPassword / 10) % 10;
-        iDigit4 = iPassword % 10;
-        
-    }//end while iPassword has same digits
+    Enter a positive integer between 1 and 100000: 1000
+    --- REVERSAL RESULT ---
+    Original number N: 1000
+    Reversed number R: 0001
 
-    puts("A secret password has been generated.\n(0XXX is included)\n(123 will be considered as 0123)\n");
+    ==== MENU ====
+    1) Option 1 - times table
+    2) Option 2 - reverse the number
+    (-1) End program
 
-    int iRound = 1;
-    int iGuess = 0;
-    int iGuessDigit1=0, iGuessDigit2=0, iGuessDigit3=0, iGuessDigit4=0;
-    int iA=0, iB=0;
+    Please select an option: 2
+    Enter a positive integer between 1 and 100000: -5
+    Invalid input!
 
-    while(iRound <= 10 && iA != 4){
+    Enter a positive integer between 1 and 100000: 509
+    --- REVERSAL RESULT ---
+    Original number N: 509
+    Reversed number R: 905
 
-        iA = 0;
-        iB = 0;
-        printf("--- ROUND %d ---\n", iRound);
-        printf("%s","Enter a 4-digit number: ");
+    ==== MENU ====
+    1) Option 1 - times table
+    2) Option 2 - reverse the number
+    (-1) End program
 
-        scanf("%d", &iGuess);
-        iGuessDigit1 = iGuess / 1000;
-        iGuessDigit2 = (iGuess / 100) % 10;
-        iGuessDigit3 = (iGuess / 10) % 10;
-        iGuessDigit4 = iGuess % 10;
+    Please select an option: -1
+    Prodram terminated.
 
-        while(  
-            iGuess < 0123 || //check lower limit (include 0000 to 0999)
-            iGuess > 9876 || //check upper limit
-            iGuessDigit1 == iGuessDigit2 || //check same digit
-            iGuessDigit1 == iGuessDigit3 || 
-            iGuessDigit1 == iGuessDigit4 ||
-            iGuessDigit2 == iGuessDigit3 || 
-            iGuessDigit2 == iGuessDigit4 ||
-            iGuessDigit3 == iGuessDigit4){
+    */
 
-            puts("Invalid input! Please enter a number between 0123 to 9876 without same digit.\n");
-            printf("%s","Enter a 4-digit number: ");
-            scanf("%d", &iGuess);
+void times_table();
+int multiplication(int,int);
+void reverse_the_number();
+int reverse_number(int);
 
-            iGuessDigit1 = iGuess / 1000;
-            iGuessDigit2 = (iGuess / 100) % 10;
-            iGuessDigit3 = (iGuess / 10) % 10;
-            iGuessDigit4 = iGuess % 10;
-
-        }//end while iGuess illegal
-
-        if(iGuessDigit1 == iDigit1){
-            iA++;
+void times_table(){
+    puts("");
+    int iMul = 0;
+    int i,j = 0;
+    for(i=1; i<=9; i++){
+        for(j=1; j<=9; j++){
+            iMul = multiplication(i, j);
+            printf("%d*%d=%2d ", i, j, iMul);
         }
-        else if(
-            iGuessDigit1 == iDigit2 || 
-            iGuessDigit1 == iDigit3 || 
-            iGuessDigit1 == iDigit4){
-            iB++;
-        }
-        if(iGuessDigit2 == iDigit2){
-            iA++;
-        }
-        else if(
-            iGuessDigit2 == iDigit1 || 
-            iGuessDigit2 == iDigit3 || 
-            iGuessDigit2 == iDigit4){
-            iB++;
-        }
-        if(iGuessDigit3 == iDigit3){
-            iA++;
-        }
-        else if(
-            iGuessDigit3 == iDigit1 || 
-            iGuessDigit3 == iDigit2 || 
-            iGuessDigit3 == iDigit4){
-            iB++;
-        }
-        if(iGuessDigit4 == iDigit4){
-            iA++;
-        }
-        else if(
-            iGuessDigit4 == iDigit1 || 
-            iGuessDigit4 == iDigit2 || 
-            iGuessDigit4 == iDigit3){
-            iB++;
-        }
-        printf("feedback: %dA%dB\n\n", iA, iB);
-        iRound++;
+        puts("");
+    }
+    puts("");
+}
 
-    }//end while iRound
+int multiplication(int _iA, int _iB){
+    int iMul = 0;
+    iMul = _iA * _iB;
+    return iMul;
+}
 
-    if(iA == 4){
+void reverse_the_number(){
+    int iN = 0;
+    int iR = 0;
 
-        puts("GAME ENDS.");
-        puts("YOU WIN THE GAME!!");
+    printf("%s","Enter a positive integer between 1 and 100000: ");
+    scanf("%d", &iN);
 
-    }//end if win
+    while(iN < 1 || iN > 100000){
+        puts("Invalid input!\n");
+        printf("%s","Enter a positive integer between 1 and 100000: ");
+        scanf("%d", &iN);
+    }
 
+    iR = reverse_number(iN);
+
+    if(iN < 10){
+        printf("--- REVERSAL RESULT ---\n");
+        printf("Original Number N: %d\n", iN);
+        printf("Reversed Number R: %d\n", iR);
+    }
+    else if(iN < 100){
+        printf("--- REVERSAL RESULT ---\n");
+        printf("Original Number N: %02d\n", iN);
+        printf("Reversed Number R: %02d\n", iR);
+    }
+    else if(iN < 1000){
+        printf("--- REVERSAL RESULT ---\n");
+        printf("Original Number N: %03d\n", iN);
+        printf("Reversed Number R: %03d\n", iR);
+
+    }
+    else if(iN < 10000){
+        printf("--- REVERSAL RESULT ---\n");
+        printf("Original Number N: %04d\n", iN);
+        printf("Reversed Number R: %04d\n", iR);
+    }
+    else if(iN < 100000){
+        printf("--- REVERSAL RESULT ---\n");
+        printf("Original Number N: %05d\n", iN);
+        printf("Reversed Number R: %05d\n", iR);
+    }
     else{
+        printf("--- REVERSAL RESULT ---\n");
+        printf("Original Number N: %06d\n", iN);
+        printf("Reversed Number R: %06d\n", iR);
+    }
+    puts("");
+}
 
-        if(iPassword < 1000){
-            printf("The correct password is 0%d.\n\n", iPassword);
-        }//<1000 add 0
+int reverse_number(int _iN){
+    int reversed = 0;
+    while(_iN != 0){
+        int digit = _iN % 10;
+        reversed = reversed * 10 + digit;
+        _iN /= 10;
+    }//end while
+    return reversed;
+}
 
-        else{
-        printf("The correct password is %d.\n\n", iPassword);
-        }//>=1000
+int main(){
 
-        puts("GAME OVER.");
-        puts("YOU LOSE THE GAME.");
+    int iOption = 0;
 
-    }//end else lose
+    do{
+        puts("==== MENU ====");
+        puts("1) Option 1 - times table");
+        puts("2) Option 2 - reverse the number");
+        puts("(-1) End program");
+        printf("\n%s","Please select an option: ");
+        scanf("%d", &iOption);
+        
+        switch (iOption){
+
+            case 1:{
+                times_table();
+                break;
+            }//end case 1
+
+            case 2:{
+                reverse_the_number();
+                break;
+            }//end case 2
+            
+            case -1:{
+                break;
+            }//end case -1
+
+            default:{
+                puts("Invalid option. Try again.\n");
+                break;
+            }//end default
+
+        }//end switch
+
+    }while(iOption != -1);
+
+    puts("Program terminated.");
 
 }//end main
