@@ -14,12 +14,17 @@ int main(){
         scanf("%d", &iN);
     }
     countdown(iN);
-}
+
+}//end main
 
 int countdown(int _iN){
-    if(_iN == 0){
+
+    if(_iN == 0){//end recursive
+        puts("");
         return 0;
-    }
-    printf("%d\n", _iN);
+    }//end if
+
+    printf("%d ", _iN);
     return countdown(_iN - 1);
-}
+
+}//end countdown
