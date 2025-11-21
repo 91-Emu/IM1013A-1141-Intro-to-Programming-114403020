@@ -1,6 +1,6 @@
 #include<stdio.h>
 
-void increase_number();
+void increase_triangle();
 
 void demical_binary();
 
@@ -28,7 +28,7 @@ int main() {
         switch (iOption){
 
             case 1:{
-                increase_number();
+                increase_triangle();
                 break;
             }//end case 1
 
@@ -58,7 +58,7 @@ int main() {
     puts("Program ends.");
 }
 
-void increase_number(){
+void increase_triangle(){
 
     /*
     enter size: 5
@@ -99,7 +99,7 @@ void increase_number(){
 
     puts("");
 
-}//end increase_number
+}//end increase_triangle
 
 void demical_binary(){
 
