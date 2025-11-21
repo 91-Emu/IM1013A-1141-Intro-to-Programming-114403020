@@ -162,6 +162,7 @@ void four_quadrant(){
     int iSize = 0;
     printf("Please enter the size of each quadrants(1~5): ");
     scanf("%d", &iSize);
+
     if(iSize < 1 || iSize > 5){
         puts("Invalid input!\n");
         return;
@@ -172,7 +173,9 @@ void four_quadrant(){
     int iRow, iCol = 0;
 
     for(iRow=1; iRow<=iSize*2+1; iRow++){
+
         for(iCol=1; iCol<=iSize*2+1; iCol++){
+
             get_symbol(iRow,iCol,iSize);
 
         }//end for iCol
@@ -186,6 +189,7 @@ void four_quadrant(){
 void get_symbol(int _iRow,int _iCol,int _iN){
 
     if(_iRow <= _iN){//upper quadrants
+        
         if(_iCol <= _iN){//left quadrant @
             printf("@");
         }
@@ -198,6 +202,7 @@ void get_symbol(int _iRow,int _iCol,int _iN){
     }//end upper quadrants
 
     else if(_iRow == _iN+1){//middle row
+
         if(_iCol <= _iN){//left -
             printf("-");
         }
@@ -210,6 +215,7 @@ void get_symbol(int _iRow,int _iCol,int _iN){
     }//end middle row
 
     else if(_iRow > _iN+1){//lower quadrants
+
         if(_iCol <= _iN){//left quadrant %
             printf("%%");
         }
