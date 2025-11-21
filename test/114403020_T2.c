@@ -2,7 +2,7 @@
 
 void increase_triangle();
 
-void demical_binary();
+void decimal_binary();
 
 void dectobin(int);
 
@@ -33,7 +33,7 @@ int main() {
             }//end case 1
 
             case 2:{
-                demical_binary();
+                decimal_binary();
                 break;
             }//end case 2
 
@@ -101,7 +101,7 @@ void increase_triangle(){
 
 }//end increase_triangle
 
-void demical_binary(){
+void decimal_binary(){
 
     /*
     10%2=0 10/2=5
@@ -130,7 +130,7 @@ void demical_binary(){
     }//end else
     printf("\n\n");
 
-}//end demical_binary
+}//end decimal_binary
 
 void dectobin(int _iN){
 
