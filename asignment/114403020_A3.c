@@ -183,7 +183,7 @@ void Option2(){
     for(int i=0; i<iN; i++){
         for(int j=0; j<iN; j++){//fill matrix with random numbers
             iMatrix[i][j] = rand() % 51; // Random number between 0 and 50
-            printf("%d ", iMatrix[i][j]);//print matrix
+            printf("%-2d ", iMatrix[i][j]);//print matrix
         }//end for j
         printf("\n");
     }//end for i
@@ -204,14 +204,9 @@ int sum_upper_triangle(int _iN, int _iMatrix[_iN][_iN]) {
             if (j >= i) { // Upper triangle sum
                 sum += _iMatrix[i][j];
             }//end if
-
         }//end for j
-
-        printf("\n");
-
     }//end for i
-
-    printf("\n");
+    
     return sum;
 
 }//end calculate_upper_triangle_sum
