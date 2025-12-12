@@ -2,45 +2,46 @@
 #include<stdlib.h>
 #include<time.h>
 
-void gen2Darr(int _iRow,int _iCol,int _i2Darr[_iRow][_iCol]){
+void gen2Darr(int _iRow,int _iCol,int _i2Darr[_iRow][_iCol]){//generate 2D array with random number
     srand(time(NULL));
     for(int i=0;i<_iRow;i++){
         for(int j=0;j<_iCol;j++){
-            _i2Darr[i][j]=rand()%100;
-        }
-    }
+            _i2Darr[i][j]=rand()%100;//generate number between 0~99
+        }//end for j
+    }//end for i
     return;
-}
+}//end gen2Darr
 
-void print2Darr(int _iRow,int _iCol,int _i2Darr[_iRow][_iCol]){
+void print2Darr(int _iRow,int _iCol,int _i2Darr[_iRow][_iCol]){//print 2D array
     for(int i=0;i<_iRow;i++){
         for(int j=0;j<_iCol;j++){
             printf("%3d",_i2Darr[i][j]);
-        }
+        }//end for j
+        puts("");
+    }//end for i
     puts("");
-    }
     return;
-}
+}//end print2Darr
 
-int sort2Darr1time(int _iSorted,int _iRow,int _iCol,int _i2Darr[_iRow][_iCol]){
+int sort2Darr1time(int _iSorted,int _iRow,int _iCol,int _i2Darr[_iRow][_iCol]){//sort 2D array one time
     int n=0;//n<=row*col,n=0 means the first number
-    int i=0,j=0,k=0,l=0;
-    int iChanged=0;
-    for(n=0;n<_iRow*_iCol-_iSorted;n++){
-        i=n/_iCol;
-        j=n%_iCol;
-        k=(n+1)/_iCol;
-        l=(n+1)%_iCol;
-        if(_i2Darr[i][j]>_i2Darr[k][l]){
-            int iTemp=0;
+    int i=0,j=0,k=0,l=0;//i,j for current number,k,l for next number
+    int iChanged=0;//flag to check if any number is changed
+    for(n=0;n<_iRow*_iCol-_iSorted-1;n++){//-1 because we compare current number with next number
+        i=n/_iCol;//get current number row
+        j=n%_iCol;//get current number column
+        k=(n+1)/_iCol;//get next number row
+        l=(n+1)%_iCol;//get next number column
+        if(_i2Darr[i][j]>_i2Darr[k][l]){//compare current number with next number
+            int iTemp=0;//temporary variable for swapping
             iTemp=_i2Darr[i][j];
             _i2Darr[i][j]=_i2Darr[k][l];
             _i2Darr[k][l]=iTemp;
-            iChanged=1;
-        }
-    }
-    _iSorted++;
-    if(iChanged!=1){
+            iChanged=1;//set flag to 1 if any number is changed
+        }//end if
+    }//end for n
+    _iSorted++;//increase sorted count
+    if(iChanged!=1){//if no number is changed, means array is sorted
         _iSorted=-1;
     }
     return _iSorted;
@@ -50,18 +51,22 @@ void bubble_sort2Darr(int _iRow,int _iCol,int _i2Darr[_iRow][_iCol]){
     int iSorted=0;
     puts("Sorting...\n");
     while(iSorted!=-1){
-        print2Darr(_iRow,_iCol,_i2Darr);
         iSorted=sort2Darr1time(iSorted,_iRow,_iCol,_i2Darr);
-    }
+        if(iSorted!=-1){//reduce last print when sorted
+            printf("Count: %d\n\n",iSorted);
+            print2Darr(_iRow,_iCol,_i2Darr);
+        }//end if
+    }//end while
     puts("Sorted!!!\n");
     return;
-}
+}//end bubble_sort2Darr
 
 void Option1(){//2D array generate and sort
     //generate 2D array
-    srand(time(NULL));
-    int iRow=rand()%3+2,iCol=rand()%3+2;
+    srand(time(NULL));//seed for random number
+    int iRow=rand()%3+2,iCol=rand()%3+2;//row and column between 2~4
     int i2Darr[iRow][iCol];
+    printf("\nRow: %d, Col: %d\n\n",iRow,iCol);
     gen2Darr(iRow,iCol,i2Darr);
     //print 2D array
     print2Darr(iRow,iCol,i2Darr);
