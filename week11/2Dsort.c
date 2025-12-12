@@ -2,50 +2,73 @@
 #include<stdlib.h>
 #include<time.h>
 
-void printarr(int rows, int cols, int arr[rows][cols]){
-    printf("\nSorted 2D array (%dx%d):\n\n", rows, cols);
-    for(int i=0; i<rows; i++){
-        for(int j=0; j<cols; j++){
-            printf("%3d ", arr[i][j]);
-        }//end for
-        printf("\n");
-    }//end for
+void gen2Darr(int _iRow,int _iCol,int _i2Darr[_iRow][_iCol]){
+    srand(time(NULL));
+    for(int i=0;i<_iRow;i++){
+        for(int j=0;j<_iCol;j++){
+            _i2Darr[i][j]=rand()%100;
+        }
+    }
+    return;
 }
 
-void arr2Dto1D(int rows, int cols, int source[rows][cols], int dest[]){
-    int index = 0;
-    for(int i = 0; i < rows; i++){
-        for(int j = 0; j < cols; j++){
-            dest[index++] = source[i][j];
-        }//end for
-    }//end for
+void print2Darr(int _iRow,int _iCol,int _i2Darr[_iRow][_iCol]){
+    for(int i=0;i<_iRow;i++){
+        for(int j=0;j<_iCol;j++){
+            printf("%3d",_i2Darr[i][j]);
+        }
+    puts("");
+    }
+    return;
 }
 
-void arr1Dto2D(int rows, int cols, int source[], int dest[rows][cols]){
-    int index = 0;
-    for(int i = 0; i < rows; i++){
-        for(int j = 0; j < cols; j++){
-            dest[i][j] = source[index++];
-        }//end for
-    }//end for
+int sort2Darr1time(int _iSorted,int _iRow,int _iCol,int _i2Darr[_iRow][_iCol]){
+    int n=0;//n<=row*col,n=0 means the first number
+    int i=0,j=0,k=0,l=0;
+    int iChanged=0;
+    for(n=0;n<_iRow*_iCol-_iSorted;n++){
+        i=n/_iCol;
+        j=n%_iCol;
+        k=(n+1)/_iCol;
+        l=(n+1)%_iCol;
+        if(_i2Darr[i][j]>_i2Darr[k][l]){
+            int iTemp=0;
+            iTemp=_i2Darr[i][j];
+            _i2Darr[i][j]=_i2Darr[k][l];
+            _i2Darr[k][l]=iTemp;
+            iChanged=1;
+        }
+    }
+    _iSorted++;
+    if(iChanged!=1){
+        _iSorted=-1;
+    }
+    return _iSorted;
 }
 
-void bubble_sort(int arr[], int n){
-    int i, j, temp;
-    for(i = 0; i < n-1; i++){
-        for(j = 0; j < n-i-1; j++){
-            if(arr[j] > arr[j+1]){
-                // swap arr[j] and arr[j+1]
-                temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
-            }//end if
-        }//end for
-    }//end for
+void bubble_sort2Darr(int _iRow,int _iCol,int _i2Darr[_iRow][_iCol]){
+    int iSorted=0;
+    puts("Sorting...\n");
+    while(iSorted!=-1){
+        print2Darr(_iRow,_iCol,_i2Darr);
+        iSorted=sort2Darr1time(iSorted,_iRow,_iCol,_i2Darr);
+    }
+    puts("Sorted!!!\n");
+    return;
 }
 
-void Option1(){
-    
+void Option1(){//2D array generate and sort
+    //generate 2D array
+    srand(time(NULL));
+    int iRow=rand()%3+2,iCol=rand()%3+2;
+    int i2Darr[iRow][iCol];
+    gen2Darr(iRow,iCol,i2Darr);
+    //print 2D array
+    print2Darr(iRow,iCol,i2Darr);
+    //sort 2D array
+    bubble_sort2Darr(iRow,iCol,i2Darr);
+    //print 2D array
+    print2Darr(iRow,iCol,i2Darr);
 }//end Option1
 
 void Option2(){
