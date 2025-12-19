@@ -139,7 +139,7 @@ void Option2(){//Flatten and sort
     return;
 }//end Option2
 void flatten_2d_to_1d(int _iN,int _iM[_iN][_iN],int _B[_iN]){
-    int iBn;
+    int iBn;//index for B
     for(int i=0;i<_iN;i++){
         for(int j=0;j<_iN;j++){
             iBn=i*_iN+j;
