@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-int size = 20000;
+int size = 128;
 int count = 1;
 
 // 负责将两个已排序的部分合并为一个排序的部分
